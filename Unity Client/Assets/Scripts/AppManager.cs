@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 //Moralis
@@ -117,7 +118,7 @@ public class AppManager : MonoBehaviour
         // Logout the Moralis User.
         await MoralisInterface.LogOutAsync();
         // Close out the application.
-        Application.Quit();
+
     }
 
 
@@ -140,7 +141,10 @@ public class AppManager : MonoBehaviour
         InitializeWeb3();
     }
 
-
+    public void GoToLobby()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
     private void InitializeWeb3()
     {
         MoralisInterface.SetupWeb3();
