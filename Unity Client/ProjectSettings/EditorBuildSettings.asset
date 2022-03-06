@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Desert Environment/Example.unity
+    guid: c150696d1445fe94889bb45f7d0901a0
   m_configObjects: {}
