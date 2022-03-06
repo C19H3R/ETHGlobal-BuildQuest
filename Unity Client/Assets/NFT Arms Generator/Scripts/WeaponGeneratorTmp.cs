@@ -11,9 +11,6 @@ public class WeaponGeneratorTmp : MonoBehaviour
     //var :: scope part list 
     //var :: magzine part list
 
-    
-
-
     public List<GameObject> weaponBodyTypes;
     public List<GameObject> weaponBarrelTypes;
     public List<GameObject> weaponStockTypes;
@@ -21,7 +18,6 @@ public class WeaponGeneratorTmp : MonoBehaviour
     public List<GameObject> weaponScopeTypes;
     public List<GameObject> weaponMagzineTypes;
 
-    public List<Material> weaponSkinMaterials;
 
 
     private int currentBodyId;
@@ -31,7 +27,6 @@ public class WeaponGeneratorTmp : MonoBehaviour
     private int currentScopeId;
     private int currentMagzineId;
 
-    private int currentSkinId;
 
     GameObject prevWeapon = null;
 
@@ -53,7 +48,6 @@ public class WeaponGeneratorTmp : MonoBehaviour
         int totalScopeTypes = weaponScopeTypes.Count;
         int totalMagzineTypes = weaponMagzineTypes.Count;
 
-        int totalSkinTypes = weaponSkinMaterials.Count;
 
 
         if (Input.GetKey(KeyCode.Space))
@@ -70,7 +64,6 @@ public class WeaponGeneratorTmp : MonoBehaviour
             currentScopeId = Random.Range(0, totalScopeTypes);
             currentMagzineId = Random.Range(0, totalMagzineTypes);
 
-            currentSkinId = Random.Range(0, totalSkinTypes - 1);
 
 
 
