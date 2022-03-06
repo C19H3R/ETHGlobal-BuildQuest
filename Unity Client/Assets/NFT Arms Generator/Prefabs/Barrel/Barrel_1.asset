@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Barrel_1
   m_EditorClassIdentifier: 
   range: 6
-  damage: 3
-  accuracy: 6
-  weight: 2
+  damage: 4
+  accuracy: 2
+  weight: 3
   type: 0

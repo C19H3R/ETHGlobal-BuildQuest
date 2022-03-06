@@ -604,10 +604,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6a22d95ce48d2449acc302a7974b5b6, type: 2}
   - {fileID: 11400000, guid: 0ef40573ee26c2747845b3fb9893bb42, type: 2}
   - {fileID: 11400000, guid: 1e3d643caaeb840429d7f639af437d93, type: 2}
+  weaponMagzineTypes:
+  - {fileID: 11400000, guid: 83bff79443fdbbd42a63e9470b510d8c, type: 2}
+  - {fileID: 11400000, guid: 74236d2a38db84a47ba34380e87e864e, type: 2}
+  - {fileID: 11400000, guid: ee0e6b67e4616eb42a2c429954d2be30, type: 2}
   damageDisp: {fileID: 1198743211}
   accuracyDisp: {fileID: 202889527}
   rangeDisp: {fileID: 343384180}
   wegihtDisp: {fileID: 1337711157}
+  magSizeDisp: {fileID: 863506803}
+  FireModeDisp: {fileID: 1338358420}
 --- !u!1 &603057471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,7 +1390,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -181.26547, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

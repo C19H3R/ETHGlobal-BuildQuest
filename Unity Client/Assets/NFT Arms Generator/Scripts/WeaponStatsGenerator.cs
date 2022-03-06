@@ -9,14 +9,17 @@ public class WeaponStatsGenerator : MonoBehaviour
     public List<ArmPartStatsSO> weaponBarrelTypes;
     public List<ArmPartStatsSO> weaponStockTypes;
     public List<ArmPartStatsSO> weaponHandleTypes;
-    public List<ArmPartStatsSO> weaponScopeTypes;/*
-    public List<ArmPartStatsSO> weaponMagzineTypes;*/
+    public List<ArmPartStatsSO> weaponScopeTypes;
+
+    public List<MagSizeSO> weaponMagzineTypes;
 
 
     public TextMeshProUGUI damageDisp;
     public TextMeshProUGUI accuracyDisp;
     public TextMeshProUGUI rangeDisp;
     public TextMeshProUGUI wegihtDisp;
+    public TextMeshProUGUI magSizeDisp;
+    public TextMeshProUGUI FireModeDisp;
 
 
      float damageVal;
@@ -31,8 +34,8 @@ public class WeaponStatsGenerator : MonoBehaviour
     private int currentBarrelId;
     private int currentStockId;
     private int currentHandleId;
-    private int currentScopeId;/*
-    private int currentMagzineId;*/
+    private int currentScopeId;
+    private int currentMagzineId;
 
 
     void Update()
@@ -42,8 +45,8 @@ public class WeaponStatsGenerator : MonoBehaviour
         int totalBarelTypes = weaponBarrelTypes.Count;
         int totalStockTypes = weaponStockTypes.Count;
         int totalHandleTypes = weaponHandleTypes.Count;
-        int totalScopeTypes = weaponScopeTypes.Count;/*
-        int totalMagzineTypes = weaponMagzineTypes.Count;*/
+        int totalScopeTypes = weaponScopeTypes.Count;
+        int totalMagzineTypes = weaponMagzineTypes.Count;
 
 
 
@@ -54,8 +57,8 @@ public class WeaponStatsGenerator : MonoBehaviour
             currentBarrelId = Random.Range(0, totalBarelTypes);
             currentStockId = Random.Range(0, totalStockTypes);
             currentHandleId = Random.Range(0, totalHandleTypes);
-            currentScopeId = Random.Range(0, totalScopeTypes);/*
-            currentMagzineId = Random.Range(0, totalMagzineTypes);*/
+            currentScopeId = Random.Range(0, totalScopeTypes);
+            currentMagzineId = Random.Range(0, totalMagzineTypes);
 
             //damage
             damageVal = weaponBarrelTypes[currentBarrelId].damage;
@@ -86,11 +89,18 @@ public class WeaponStatsGenerator : MonoBehaviour
             WeightVal += weaponStockTypes[currentStockId].weight;
             WeightVal += weaponScopeTypes[currentScopeId].weight;
 
+            //magSize
+            MagSize = weaponMagzineTypes[currentMagzineId].magSize;
+
+            //firemode
+            weaponType = weaponBodyTypes[currentBodyId].type;
+
             damageDisp.text = "damage :" + damageVal;
             accuracyDisp.text = "acccu :" + AccuVal;
             wegihtDisp.text = "weight :" + WeightVal;
             rangeDisp.text = "range :" + RangeVal;
-
+            magSizeDisp.text = "rounds : " + MagSize;
+            FireModeDisp.text = "fire mode : " + weaponType;
 
         }
 
