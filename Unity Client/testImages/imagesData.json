@@ -208,4 +208,64 @@
             "value": "16"
         }
     ]
+},"0":{
+    "id": "0",
+    "name": "SuprArms #0",
+    "image": "./suprArms-0.png",
+    "attributes": [
+        {
+            "trait_type": "Damage",
+            "value": "19"
+        },
+        {
+            "trait_type": "Accuracy",
+            "value": "25"
+        },
+        {
+            "trait_type": "Weight",
+            "value": "20"
+        },
+        {
+            "trait_type": "Weapon Type",
+            "value": "auto"
+        },
+        {
+            "trait_type": "Mag Size",
+            "value": "20"
+        },
+        {
+            "trait_type": "Range",
+            "value": "16"
+        }
+    ]
+},"1":{
+    "id": "1",
+    "name": "SuprArms #1",
+    "image": "./suprArms-1.png",
+    "attributes": [
+        {
+            "trait_type": "Damage",
+            "value": "19"
+        },
+        {
+            "trait_type": "Accuracy",
+            "value": "25"
+        },
+        {
+            "trait_type": "Weight",
+            "value": "20"
+        },
+        {
+            "trait_type": "Weapon Type",
+            "value": "auto"
+        },
+        {
+            "trait_type": "Mag Size",
+            "value": "30"
+        },
+        {
+            "trait_type": "Range",
+            "value": "16"
+        }
+    ]
 },
