@@ -16,7 +16,7 @@ node scripts/sample-script.js
 npx hardhat help
 ```
 
-SuprArms deployed to:  0x1D4D6C414626433128A46C1250BeE24558a2c13D
+SuprArms deployed to:  0x78Ae7cFc6B0903F71277cAD2B66528c8044CDaA5
 
 Successfully verified contract SuprArms on Etherscan.
-https://mumbai.polygonscan.com/address/0x1D4D6C414626433128A46C1250BeE24558a2c13D#code
+https://mumbai.polygonscan.com/address/0x78Ae7cFc6B0903F71277cAD2B66528c8044CDaA5#code

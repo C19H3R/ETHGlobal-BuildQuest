@@ -2,12 +2,15 @@
 
 pragma solidity 0.8.9;
 
+import "@openzeppelin/contracts/utils/Context.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 
 // Polygon (Matic) Mumbai Testnet Deployment
-contract SuprArms is ERC721, VRFConsumerBase, ConfirmedOwner(msg.sender) {
+contract SuprArms is ERC721, ERC721Enumerable, VRFConsumerBase, ConfirmedOwner(msg.sender) {
 
     string private _baseTokenURI;
 
@@ -41,12 +44,12 @@ contract SuprArms is ERC721, VRFConsumerBase, ConfirmedOwner(msg.sender) {
     /**
      * Request Weapon
      */
-    function requestWeapon(address buyer) public returns (bytes32 requestId) {
+    function requestWeapon() public returns (bytes32 requestId) {
         require(LINK.balanceOf(address(this)) > fee, "SuprArms: Not enough LINK to initialte function call");
-        require(holders[buyer] == 0, "SuprArms: Weapon already requested");
+        require(holders[_msgSender()] == 0, "SuprArms: Weapon already requested");
         bytes32 _requestId = requestRandomness(keyHash, fee);
-        buyers[requestId] = buyer;
-        holders[buyer] = REQUEST_IN_PROGRESS;
+        buyers[_requestId] = _msgSender();
+        holders[_msgSender()] = REQUEST_IN_PROGRESS;
         emit WeaponRequested(_requestId, keyHash);
         return _requestId;
     }
@@ -54,12 +57,26 @@ contract SuprArms is ERC721, VRFConsumerBase, ConfirmedOwner(msg.sender) {
     /**
      * Reveals the weapon metadata by minting the NFT
      */
-    function revealWeapon(address buyer) public {
-        require(holders[buyer] != 0, "SuprArms: Weapon not requested");
-        require(holders[buyer] != REQUEST_IN_PROGRESS, "SuprArms: Request under processing");
-        uint256 tokenId = holders[buyer];
-        _safeMint(buyer, tokenId);
-        holders[buyer] = 0;
+    function revealWeapon() public {
+        require(holders[_msgSender()] != 0, "SuprArms: Weapon not requested");
+        require(holders[_msgSender()] != REQUEST_IN_PROGRESS, "SuprArms: Request under processing");
+        uint256 tokenId = holders[_msgSender()];
+        _safeMint(_msgSender(), tokenId);
+        holders[_msgSender()] = 0;
+    }
+
+    /**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        require(_exists(tokenId), "SuprArms: Non-Existent Artifact");
+
+        string memory base = _baseURI();
+        return string(abi.encodePacked(base, Strings.toString(tokenId), ".json"));
+    }
+
+    function _baseURI() internal view virtual override returns (string memory) {
+        return _baseTokenURI;
     }
 
     /**
@@ -69,6 +86,27 @@ contract SuprArms is ERC721, VRFConsumerBase, ConfirmedOwner(msg.sender) {
         uint256 tokenIdTracker = (randomness % 8400) - 1;
         holders[buyers[requestId]] = tokenIdTracker;
         emit WeaponFulfilled(requestId, randomness, tokenIdTracker);
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal virtual override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, tokenId);
+    }
+
+    /**
+     * @dev See {IERC165-supportsInterface}.
+     */
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 
     /** 
