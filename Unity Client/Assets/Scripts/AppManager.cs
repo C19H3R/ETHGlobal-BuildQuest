@@ -11,6 +11,8 @@ using Moralis.Platform.Objects;
 //WalletConnect
 using WalletConnectSharp.Core.Models;
 using WalletConnectSharp.Unity;
+using Moralis.Web3Api.Models;
+using System;
 
 public class AppManager : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class AppManager : MonoBehaviour
     public GameObject connectPanel;
     public GameObject HomePagePanel;
     public TextMeshProUGUI walletAddress;
+
+   
     // Start is called before the first frame update
     async void Start()
     {
@@ -52,6 +56,8 @@ public class AppManager : MonoBehaviour
         if (MoralisInterface.IsLoggedIn())
         {
             Debug.Log("User is already logged in to Moralis.");
+
+
             UserLoggedInHandler();
         }
         // User is not logged in, depending on build target, begin wallect connection.
@@ -154,11 +160,40 @@ public class AppManager : MonoBehaviour
     {
         var user = await MoralisInterface.GetUserAsync();
 
+
+
         if (user != null)
         {
+
+           
+            getNFTTokensForAddress(user.accounts[0]);
+
             connectPanel.SetActive(false);
             HomePagePanel.SetActive(true);
         }
     }
 
+    private async void getNFTTokensForAddress(string currentAddress)
+    {
+        string address =currentAddress;
+        string tokenAddress = "0x78Ae7cFc6B0903F71277cAD2B66528c8044CDaA5";
+        NftOwnerCollection balance = await MoralisInterface.GetClient().Web3Api.Account.GetNFTsForContract(address.ToLower(), tokenAddress.ToLower(), ChainList.mumbai);/*
+        NftOwnerCollection balance = await MoralisInterface.GetClient().Web3Api.Account.GetNFTs(address.ToLower(), ChainList.mumbai);*/
+        List<int> tokensOwnedThis = new List<int>();
+        Debug.Log("ASDF");
+        Debug.Log(balance.Result[0]);
+        foreach (var element in balance.Result)
+        {
+            Debug.Log("result itrated ......................");
+            tokensOwnedThis.Add(int.Parse(element.TokenId));
+            Debug.Log(tokensOwnedThis[0]);
+        }
+        TransferDataToNewScene.instance.tokensOwned = tokensOwnedThis;
+
+    }
+
+   public void enterPlayScene()
+    {
+        SceneManager.LoadScene("prototyping");
+    }
 }
