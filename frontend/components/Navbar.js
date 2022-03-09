@@ -55,9 +55,9 @@ const Navbar = () => {
                   My Assets
                 </a>
               </Link>
-              <div className="lg:mt-0 -ml-5 mt-4">
+             
                 <ConnectButton />
-              </div>
+              
             </div>
           </div>
         </nav>
