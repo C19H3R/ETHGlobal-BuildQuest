@@ -1,8 +1,6 @@
 import React from "react";
 import { Card } from "web3uikit";
 
-import { contractAddress } from "../contract";
-
 const OPENSEA_LINK = `https://testnets.opensea.io/assets/mumbai`;
 
 const NFTCard = (props) => {
