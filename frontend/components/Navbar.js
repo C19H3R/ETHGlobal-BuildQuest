@@ -50,7 +50,7 @@ const Navbar = () => {
                   Marketplace
                 </a>
               </Link>
-              <Link href="/my-assets">
+              <Link href="/myassets">
                 <a className="mr-6 mt-3 lg:mt-0 text-gray-400 text-xl">
                   My Assets
                 </a>

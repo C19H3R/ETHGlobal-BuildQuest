@@ -1,33 +1,38 @@
 import React from "react";
 import { Card } from "web3uikit";
 
-const ipfs_string = "";
+import { contractAddress } from "../contract";
+
+const OPENSEA_LINK = `https://testnets.opensea.io/assets/mumbai`;
 
 const NFTCard = (props) => {
+  
   return (
-    <div className="flex flex-wrap justify-between">
+    <div className="flex lg:flex-row sm:flex-col md:flex-col flex-wrap lg:justify-between justify-around">
       {Object.keys(props.NFTs).map((key, value) => {
-        return (
-          <div
-            style={{
-              width: "500px",
-              marginLeft: "20px",
-              marginRight: "20px",
-              marginTop: "20px",
-              marginBottom: "20px",
-            }}
-            key={key}
-          >
-            <Card
-              title={props.NFTs[key].name + " #" + props.NFTs[key].token_id}
-            >
-              <img
-                src={`https://ipfs.io/ipfs/QmU9RjtQYzRRVGJavbzXamp1PVQDLdHZgiz1rSUApLa3fo/suprArms-${props.NFTs[key].token_id}.png`}
-                className="w-100"
-              ></img>
-            </Card>
-          </div>
-        );
+        if (props.NFTs[key].name === "SuprArms") {
+          return (
+              <a
+                href={`${OPENSEA_LINK}/${props.NFTs[key].token_address}/${props.NFTs[key].token_id}`} target="_blank"
+              >
+                <div className="w-80 mr-10 ml-10 mt-10 mb-10" key={key}>
+                  <Card
+                  >
+                    <img
+                      src={`https://ipfs.io/ipfs/QmU9RjtQYzRRVGJavbzXamp1PVQDLdHZgiz1rSUApLa3fo/suprArms-${props.NFTs[key].token_id}.png`}
+                      className="w-100 rounded-lg"
+                    ></img>
+                    <p className="font-bold ml-20 mt-5 mb-5">
+                      {props.NFTs[key].name + " #" + props.NFTs[key].token_id}
+                    </p>
+                  </Card>
+                </div>
+              </a>
+            );
+          
+        } 
+          
+        
       })}
     </div>
   );
