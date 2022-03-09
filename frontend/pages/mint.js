@@ -54,7 +54,7 @@ export default function Mint() {
           type: "function",
         },
       ],
-      contractAddress: CONTRACT_ADDRESS,
+      contractAddress: contractAddress,
       functionName: "revealWeapon",
       params: {},
     };
