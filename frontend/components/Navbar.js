@@ -51,11 +51,11 @@ const Navbar = () => {
                 </a>
               </Link>
               <Link href="/myassets">
-                <a className="mr-6 mt-3 lg:mt-0 text-gray-400 text-xl">
+                <a className="mr-8 mt-3 lg:mt-0 text-gray-400 text-xl">
                   My Assets
                 </a>
               </Link>
-              <div className="lg:mt-0 -ml-5 mt-4 z-50 rounded-lg bg-wheat">
+              <div className="lg:mt-0 mt-4 z-50 rounded-lg bg-wheat">
                 <ConnectButton />
               </div>
             </div>

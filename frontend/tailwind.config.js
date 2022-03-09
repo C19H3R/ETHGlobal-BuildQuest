@@ -17,6 +17,7 @@ module.exports = {
           800: "#282828",
           900: "#101010",
         },
+        wheat: "#F2F6FF"
       },
       animation: {
         bounce200: "bounce 1s infinite 200ms",
