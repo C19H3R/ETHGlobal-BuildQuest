@@ -33,7 +33,7 @@ export default function MyAssets() {
 
   useEffect(() => {
     fetchAllTokenIds();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <div className="bg-gradient-to-tl from-blue-900 to-green-700">
