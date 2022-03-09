@@ -13,7 +13,7 @@ const NFTCard = (props) => {
         if (props.NFTs[key].name === "SuprArms") {
           return (
               <a
-                href={`${OPENSEA_LINK}/${props.NFTs[key].token_address}/${props.NFTs[key].token_id}`} target="_blank"
+                href={`${OPENSEA_LINK}/${props.NFTs[key].token_address}/${props.NFTs[key].token_id}`}
               >
                 <div className="w-80 mr-10 ml-10 mt-10 mb-10" key={key}>
                   <Card

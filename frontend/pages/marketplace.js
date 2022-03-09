@@ -31,7 +31,7 @@ export default function Marketplace() {
 
   useEffect(() => {
     fetchAllTokenIds();
-  }, [isAuthenticated]);
+  }, []);
 
   return (
     <MoralisProvider appId={API_ID} serverUrl={SERVER_URL} isAuthenticated>
