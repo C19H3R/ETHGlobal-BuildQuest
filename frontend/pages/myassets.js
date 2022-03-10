@@ -10,7 +10,6 @@ export default function MyAssets() {
   const { isAuthenticated, account} = useMoralis();
   const [NFTs, setNFT] = useState({});
   const Web3Api = useMoralisWeb3Api();
-  console.log(account)
 
   const NFTMetadata = {};
 
@@ -20,14 +19,12 @@ export default function MyAssets() {
       chain: "mumbai",
     };
     NFTMetadata = await Web3Api.account.getNFTs(options)
-    console.log(NFTMetadata);
     Object.keys(NFTMetadata).forEach((key) => {
       if (key === "result") {
         NFTMetadata = NFTMetadata[key];
         setNFT(NFTMetadata);
       }
-    });
-    console.log(NFTMetadata);}
+    });}
     
   };
 

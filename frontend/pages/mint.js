@@ -39,10 +39,8 @@ export default function Mint() {
       params: requestWeaponOptions,
     });
     setMinting(true);
-    console.log(id);
 
     await delay(120000);
-    console.log("waited 40 seconds");
 
     let revealWeaponOptions = {
       abi: [
@@ -62,16 +60,12 @@ export default function Mint() {
     let tx = await contractProcessor.fetch({
       params: revealWeaponOptions,
     });
-    console.log("minting...please wait");
     await delay(10000);
-    console.log(tx);
     setMinting(false);
 
     web3.eth.getTransactionReceipt(tx.hash).then(function (data) {
       let transaction = data;
       let logs = data.logs;
-      console.log(logs);
-      console.log(web3.utils.hexToNumber(logs[0].topics[3]));
       setOpenSea(
         `${OPENSEA_LINK}/${contractAddress}/${web3.utils.hexToNumber(
           logs[0].topics[3]
