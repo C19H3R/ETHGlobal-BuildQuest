@@ -8,8 +8,8 @@ const SERVER_URL = process.env.NEXT_PUBLIC_MORALIS_SERVER_URL;
 function App({ Component, pageProps }) {
   return (
     <MoralisProvider appId={API_ID} serverUrl={SERVER_URL} isAuthenticated>
-      <Navbar />
-      <Component {...pageProps} />
+      <div className="bg-gradient-to-tl from-blue-900 to-green-700 h-screen"><Navbar />
+      <Component {...pageProps} /></div>
     </MoralisProvider>
   );
 }

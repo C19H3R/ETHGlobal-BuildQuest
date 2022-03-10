@@ -11,14 +11,14 @@ const NFTCard = (props) => {
         if (props.NFTs[key].name === "SuprArms") {
           return (
               <a
-                href={`${OPENSEA_LINK}/${props.NFTs[key].token_address}/${props.NFTs[key].token_id}`}
+                href={`${OPENSEA_LINK}/${props.NFTs[key].token_address}/${props.NFTs[key].token_id}`} onClick={handleClickOpenSea}
               >
-                <div className="w-80 mr-10 ml-10 mt-10 mb-10" key={key}>
+                <div className="w-80 mr-10 ml-10 mt-10 mb-10 shadow-2xl" key={key}>
                   <Card
                   >
                     <img
                       src={`https://ipfs.io/ipfs/QmU9RjtQYzRRVGJavbzXamp1PVQDLdHZgiz1rSUApLa3fo/suprArms-${props.NFTs[key].token_id}.png`}
-                      className="w-100 rounded-lg"
+                      className="w-100 rounded-xl"
                     ></img>
                     <p className="font-bold ml-20 mt-5 mb-5">
                       {props.NFTs[key].name + " #" + props.NFTs[key].token_id}
