@@ -19,7 +19,6 @@ export default function Marketplace() {
       chain: "mumbai",
     };
     NFTMetadata = await Web3Api.token.getAllTokenIds(options);
-    console.log(NFTMetadata);
     Object.keys(NFTMetadata).forEach((key) => {
       if (key === "result") {
         NFTMetadata = NFTMetadata[key];
@@ -35,14 +34,19 @@ export default function Marketplace() {
 
   return (
     <MoralisProvider appId={API_ID} serverUrl={SERVER_URL} isAuthenticated>
-      
       {isAuthenticated ? (
         <div className="bg-gradient-to-tl from-blue-900 to-green-700">
-        <div className="flex flex-col items-center justify-evenly">
-          {<NFTCard NFTs={NFTs}></NFTCard>}
-        </div></div>
-      ):<div className="bg-gradient-to-tl from-blue-900 to-green-700 h-screen"><div className="flex flex-col items-center justify-evenly"><p className="mb-2 mt-20">Please connect your wallet</p></div></div>}
-      
+          <div className="flex flex-col items-center justify-evenly">
+            {<NFTCard NFTs={NFTs}></NFTCard>}
+          </div>
+        </div>
+      ) : (
+        <div className="bg-gradient-to-tl from-blue-900 to-green-700 h-screen">
+          <div className="flex flex-col items-center justify-evenly">
+            <p className="mb-2 mt-20">Please connect your wallet</p>
+          </div>
+        </div>
+      )}
     </MoralisProvider>
   );
 }

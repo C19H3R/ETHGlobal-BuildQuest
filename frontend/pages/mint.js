@@ -85,7 +85,7 @@ export default function Mint() {
           !minting ? (
             <button
               onClick={mint}
-              className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2 mt-20 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 w-40"
+              className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded w-40 mt-20"
             >
               Mint NFT
             </button>
@@ -97,7 +97,7 @@ export default function Mint() {
         )}
         {opensea != null && (
           <button
-            className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-4 py-2 rounded px-4 py-2 mt-4"
             onClick={handleClickOpenSea}
           >
             View on OpenSea

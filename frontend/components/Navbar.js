@@ -1,9 +1,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ConnectButton } from "web3uikit";
+import { useRouter } from "next/router";
+
+const navlinks = [
+  { title: "Home", path: "/" },
+  { title: "Mint", path: "/mint" },
+  { title: "Marketplace", path: "/marketplace" },
+  { title: "My Assets", path: "/myassets" },
+];
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
+
+  const router = useRouter();
 
   const handleClick = () => {
     setActive(!active);
@@ -39,22 +49,21 @@ const Navbar = () => {
             } w-full lg:inline-flex lg:flex-grow lg:w-auto`}
           >
             <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
-              <Link href="/">
-                <a className="mr-6 mt-2 lg:mt-0 text-gray-400 text-xl">Home</a>
-              </Link>
-              <Link href="/mint">
-                <a className="mr-6 mt-3 lg:mt-0 text-gray-400 text-xl">Mint</a>
-              </Link>
-              <Link href="/marketplace">
-                <a className="mr-6 mt-3 lg:mt-0 text-gray-400 text-xl">
-                  Marketplace
-                </a>
-              </Link>
-              <Link href="/myassets">
-                <a className="mr-8 mt-3 lg:mt-0 text-gray-400 text-xl">
-                  My Assets
-                </a>
-              </Link>
+              {navlinks.map((item, index) => {
+                return (
+                    <Link key={index} href={item.path}>
+                      <a
+                        className={`mr-6 mt-2 lg:mt-0 text-xl ${
+                          router.pathname === item.path
+                            ? "text-white"
+                            : "hover:text-white text-gray-400"
+                        }  `}
+                      >
+                        {item.title}
+                      </a>
+                    </Link>
+                );
+              })}
               <div className="lg:mt-0 mt-4 z-50 rounded-lg bg-wheat">
                 <ConnectButton />
               </div>
