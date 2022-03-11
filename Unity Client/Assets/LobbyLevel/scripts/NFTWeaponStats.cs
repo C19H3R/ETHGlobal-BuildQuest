@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class NFTWeaponStats : MonoBehaviour
+public class NFTWeaponStats : MonoBehaviourPunCallbacks
 {
     public GameObject bulletObject;
     public Rigidbody bulletObjectrb;
@@ -137,7 +138,19 @@ public class NFTWeaponStats : MonoBehaviour
     {
         Vector3 foreward = barrelEnd.TransformDirection(Vector3.forward) * 10;
 
-        GameObject newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);
+        GameObject newBullet;
+        Debug.Log("<color=red>Error: </color>AssetBundle not found");
+        if (photonView.IsMine)
+        {
+            newBullet = PhotonNetwork.Instantiate("Cube", barrelEnd.position, transform.rotation);
+        }
+        else
+        {
+            newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);
+        }
+
+       
+        Debug.Log("test");
         Rigidbody newBulletRb = newBullet.GetComponent<Rigidbody>();
         newBulletRb.AddForce(Vector3.Normalize(foreward) * bulletSpeed);
 

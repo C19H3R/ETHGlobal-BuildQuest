@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 5541591898537624622}
   - component: {fileID: 5541591898537624621}
   - component: {fileID: 8748308822817146201}
+  - component: {fileID: 2751063267437170713}
+  - component: {fileID: -1268538241402930882}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: NFTWeapon
@@ -101,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRightInfoText: {fileID: 6173981097668394581}
-  WeaponID: 8331
+  WeaponID: 557
   gfxParent: {fileID: 5541591898518519832}
   weaponBodyTypes:
   - {fileID: 482751618866283209, guid: e58db43c97865d54aafda8f5037b6d1d, type: 3}
@@ -185,6 +187,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.31, z: 1.66}
   m_Center: {x: 0, y: 0, z: 0.86}
+--- !u!114 &2751063267437170713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541591898537624616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: -1268538241402930882}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-1268538241402930882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541591898537624616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5541591899104537776
 GameObject:
   m_ObjectHideFlags: 0

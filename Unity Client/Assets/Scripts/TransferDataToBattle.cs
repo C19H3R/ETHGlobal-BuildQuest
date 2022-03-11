@@ -5,7 +5,7 @@ using UnityEngine;
 public class TransferDataToBattle : MonoBehaviour
 {
 
-    public int Nft_id;
+    public int nft_id=-1;
     public static TransferDataToBattle instance;
     // Start is called before the first frame update
     void Start()

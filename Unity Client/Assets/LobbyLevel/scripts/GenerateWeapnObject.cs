@@ -44,12 +44,15 @@ public class GenerateWeapnObject : MonoBehaviour
 
     private void Start()
     {
-        weaponRightInfoText.text = "#" + WeaponID;
-        GetWeaponFromId();
-        getWeaponGfx();
-        UpdateNFTWeaponStats();
+        if (WeaponID > 0)
+        {
+            weaponRightInfoText.text = "#" + WeaponID;
+            GetWeaponFromId();
+            getWeaponGfx();
+            UpdateNFTWeaponStats();
+        }
     }
-    void GetWeaponFromId()
+    public void GetWeaponFromId()
     {
         int totalBodyTypes = weaponBodyTypes.Count;
         int totalBarelTypes = weaponBarrelTypes.Count;
@@ -100,7 +103,7 @@ public class GenerateWeapnObject : MonoBehaviour
     }
 
 
-    GameObject getWeaponGfx()
+    public GameObject getWeaponGfx()
     {
         GameObject currWeaponBody = Instantiate(weaponBodyTypes[currentBodyId]);
 
@@ -123,7 +126,7 @@ public class GenerateWeapnObject : MonoBehaviour
         currWeaponBody.transform.localPosition= Vector3.zero;
         return currWeaponBody;
     }
-    private void UpdateNFTWeaponStats()
+    public void UpdateNFTWeaponStats()
     {
         //damage
         damageVal = weaponBarrelTypesSO[currentBarrelId].damage;
