@@ -24,12 +24,12 @@ public class NFTWeaponStats : MonoBehaviour
 
     Quaternion initialRotation;
     Vector3 initialPos;
-    bool canFire =true;
+    bool canFire = true;
     private void Start()
     {
         initialPos = transform.position;
         initialRotation = transform.localRotation;
-        
+
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class NFTWeaponStats : MonoBehaviour
     {
 
         //left mouse button
-        if (Input.GetMouseButtonDown(0)&&isEquiped&&canFire)
+        if (Input.GetMouseButtonDown(0) && isEquiped && canFire)
         {
             Debug.Log("click");
             Shoot();
@@ -77,7 +77,7 @@ public class NFTWeaponStats : MonoBehaviour
         {
             ShootBullet();
             generateRecoil();
-            yield return new WaitForSeconds(firingRate/2);
+            yield return new WaitForSeconds(firingRate / 2);
         }
 
         canFire = true;
@@ -126,9 +126,9 @@ public class NFTWeaponStats : MonoBehaviour
 
         Quaternion recoilShift = new Quaternion();
 
-        float recoilval = -weaponWeight/50-0.5f;
+        float recoilval = -weaponWeight / 50 - 0.5f;
         Debug.Log(recoilval);
-        recoilShift.eulerAngles = new Vector3(recoilval, 0,0);/*
+        recoilShift.eulerAngles = new Vector3(recoilval, 0, 0);/*
         transform.RotateAround(transform.right, -0.1f);*/
         transform.Rotate(recoilShift.eulerAngles);
     }
@@ -137,13 +137,13 @@ public class NFTWeaponStats : MonoBehaviour
     {
         Vector3 foreward = barrelEnd.TransformDirection(Vector3.forward) * 10;
 
-        GameObject newBullet = Instantiate(bulletObject, barrelEnd.position,transform.rotation);
+        GameObject newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);
         Rigidbody newBulletRb = newBullet.GetComponent<Rigidbody>();
         newBulletRb.AddForce(Vector3.Normalize(foreward) * bulletSpeed);
 
 
         Debug.Log("shootbullet");
-        Debug.DrawRay(barrelEnd.position,foreward,Color.green);
+        Debug.DrawRay(barrelEnd.position, foreward, Color.green);
     }
 
     public void setWeaponToOriginalPos()
@@ -160,4 +160,5 @@ public class NFTWeaponStats : MonoBehaviour
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localPosition = Vector3.zero;
     }
+
 }

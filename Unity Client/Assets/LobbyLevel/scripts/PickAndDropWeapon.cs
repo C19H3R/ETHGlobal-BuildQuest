@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PickAndDropWeapon : MonoBehaviour
 {
-    public  Transform weaponContainerTransform;
-    
-    GameObject currentWeapon=null;
+    public Transform weaponContainerTransform;
+
+    GameObject currentWeapon = null;
 
     private void Start()
     {
-            
+
     }
 
     private void Update()
@@ -33,7 +33,7 @@ public class PickAndDropWeapon : MonoBehaviour
         RaycastHit hit;
 
         Transform tmp = Camera.main.transform;
-        if (Physics.Raycast(tmp.position+tmp.forward, tmp.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(tmp.position + tmp.forward, tmp.forward, out hit, Mathf.Infinity))
         {
             if (hit.collider.gameObject.tag == "NFTWeapon")
             {
@@ -51,13 +51,14 @@ public class PickAndDropWeapon : MonoBehaviour
 
     }
 
-     void equipOtherWeapon(GameObject other )
+    void equipOtherWeapon(GameObject other)
     {
         if (currentWeapon == null)
         {
             NFTWeaponStats currentWeaponObj = other.GetComponent<NFTWeaponStats>();
             currentWeaponObj.setWeaponToParent(weaponContainerTransform);
             currentWeapon = currentWeaponObj.gameObject;
+            TransferDataToBattle.instance.Nft_id = currentWeapon.GetComponent<GenerateWeapnObject>().WeaponID;
         }
     }
     void unEquipcurrentWeapon()
