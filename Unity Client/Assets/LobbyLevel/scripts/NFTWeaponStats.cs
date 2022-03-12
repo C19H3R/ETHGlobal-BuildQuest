@@ -7,6 +7,8 @@ using Photon.Pun;
 
 public class NFTWeaponStats : MonoBehaviourPunCallbacks
 {
+    public ParticleSystem particleEffect;
+
     public GameObject bulletObject;
     public Rigidbody bulletObjectrb;
     public Transform barrelEnd;
@@ -137,6 +139,8 @@ public class NFTWeaponStats : MonoBehaviourPunCallbacks
 
     private void ShootBullet()
     {
+        particleEffect.Play();
+
         Vector3 foreward = barrelEnd.TransformDirection(Vector3.forward) * 10;
 
         GameObject newBullet;

@@ -8,7 +8,6 @@ public class BulletScript : MonoBehaviour
     private ParticleSystem effects;
     private void OnCollisionEnter(Collision collision)
     {
-        effects.Play();
         Vector3 position = this.gameObject.transform.position;
         Destroy(this.gameObject);
     }
