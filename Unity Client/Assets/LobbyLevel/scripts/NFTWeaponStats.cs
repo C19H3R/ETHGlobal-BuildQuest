@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class NFTWeaponStats : MonoBehaviourPunCallbacks
@@ -143,28 +144,41 @@ public class NFTWeaponStats : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             newBullet = PhotonNetwork.Instantiate("Cube", barrelEnd.position, transform.rotation);
+            Debug.Log("test");
+            Rigidbody newBulletRb = newBullet.GetComponent<Rigidbody>();
+            newBulletRb.AddForce(Vector3.Normalize(foreward) * bulletSpeed);
+
+
+            Debug.Log("shootbullet");
+            Debug.DrawRay(barrelEnd.position, foreward, Color.green);
         }
         else
         {
-            newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);
+            if(SceneManager.GetActiveScene().name != "battle")
+            {
+                newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);
+                Debug.Log("test");
+                Rigidbody newBulletRb = newBullet.GetComponent<Rigidbody>();
+                newBulletRb.AddForce(Vector3.Normalize(foreward) * bulletSpeed);
+
+
+                Debug.Log("shootbullet");
+                Debug.DrawRay(barrelEnd.position, foreward, Color.green);
+            }
+           /* newBullet = Instantiate(bulletObject, barrelEnd.position, transform.rotation);*/
         }
 
        
-        Debug.Log("test");
-        Rigidbody newBulletRb = newBullet.GetComponent<Rigidbody>();
-        newBulletRb.AddForce(Vector3.Normalize(foreward) * bulletSpeed);
-
-
-        Debug.Log("shootbullet");
-        Debug.DrawRay(barrelEnd.position, foreward, Color.green);
+       
     }
 
-    public void setWeaponToOriginalPos()
+    public void setWeaponToOriginalTransform()
     {
         isEquiped = false;
         transform.parent = null;
         transform.position = initialPos;
         transform.rotation = initialRotation;
+        transform.localScale = Vector3.one;
     }
     public void setWeaponToParent(Transform parent)
     {

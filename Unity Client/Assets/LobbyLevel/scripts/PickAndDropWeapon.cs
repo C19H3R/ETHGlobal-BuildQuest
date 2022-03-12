@@ -58,6 +58,9 @@ public class PickAndDropWeapon : MonoBehaviour
             NFTWeaponStats currentWeaponObj = other.GetComponent<NFTWeaponStats>();
             currentWeaponObj.setWeaponToParent(weaponContainerTransform);
             currentWeapon = currentWeaponObj.gameObject;
+            currentWeapon.transform.localScale = Vector3.one;
+            currentWeapon.transform.localPosition = Vector3.zero;
+            currentWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
             TransferDataToBattle.instance.nft_id=currentWeaponObj.GetComponent<GenerateWeapnObject>().WeaponID;
         }
     }
@@ -66,7 +69,7 @@ public class PickAndDropWeapon : MonoBehaviour
         if (currentWeapon != null)
         {
             NFTWeaponStats currentWeaponObj = currentWeapon.GetComponent<NFTWeaponStats>();
-            currentWeaponObj.setWeaponToOriginalPos();
+            currentWeaponObj.setWeaponToOriginalTransform();
             currentWeapon = null;
         }
     }

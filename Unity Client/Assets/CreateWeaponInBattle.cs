@@ -8,7 +8,9 @@ using Photon.Pun;
 
 public class CreateWeaponInBattle : MonoBehaviourPunCallbacks
 {
-    
+
+    public GameObject Weapon;
+
     void Start()
     {
         
@@ -27,9 +29,9 @@ public class CreateWeaponInBattle : MonoBehaviourPunCallbacks
             //  generate go and its parent should be this
         }
         else
+        if(TransferDataToBattle.instance.nft_id>=0)
         {
-
-            GameObject newWeapon = PhotonNetwork.Instantiate("Weapon", transform.position, Quaternion.identity);
+            GameObject newWeapon = Instantiate(Weapon, transform);
             newWeapon.transform.parent = transform;
             newWeapon.transform.localPosition = Vector3.zero;
             GenerateWeapnObject tmp = newWeapon.GetComponent<GenerateWeapnObject>();

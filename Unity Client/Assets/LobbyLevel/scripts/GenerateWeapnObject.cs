@@ -105,7 +105,7 @@ public class GenerateWeapnObject : MonoBehaviour
 
     public GameObject getWeaponGfx()
     {
-        GameObject currWeaponBody = Instantiate(weaponBodyTypes[currentBodyId]);
+        GameObject currWeaponBody = Instantiate(weaponBodyTypes[currentBodyId],gfxParent);
 
         Transform currentWeaponBodySocket = currWeaponBody.transform.Find("Sockets");
 
@@ -121,9 +121,9 @@ public class GenerateWeapnObject : MonoBehaviour
         GameObject currWeaponScope = Instantiate(weaponScopeTypes[currentScopeId], scopeSocket);
         GameObject currWeaponMagzine = Instantiate(weaponMagzineTypes[currentMagzineId], magzineSocket);
 
-        currWeaponBody.transform.parent = gfxParent;
         currWeaponBody.transform.localRotation = Quaternion.Euler(Vector3.zero);
         currWeaponBody.transform.localPosition= Vector3.zero;
+        currWeaponBody.transform.localScale = Vector3.one;
         return currWeaponBody;
     }
     public void UpdateNFTWeaponStats()
