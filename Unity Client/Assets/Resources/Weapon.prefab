@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRightInfoText: {fileID: 6173981097668394581}
-  WeaponID: 557
+  WeaponID: 999
   gfxParent: {fileID: 5541591898518519832}
   weaponBodyTypes:
   - {fileID: 482751618866283209, guid: e58db43c97865d54aafda8f5037b6d1d, type: 3}

@@ -471,6 +471,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6637598966506844376, guid: 893bfd547b726b3428fe7dc1e300bf93, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 893bfd547b726b3428fe7dc1e300bf93, type: 3}
 --- !u!1 &263849234 stripped
@@ -2042,7 +2046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0192ada47d8c61d4ea47d2e379f3348c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nft_id: 0
+  nft_id: -1
 --- !u!4 &1502953955
 Transform:
   m_ObjectHideFlags: 0
