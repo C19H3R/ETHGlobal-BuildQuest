@@ -44,7 +44,7 @@ export default function MyAssets() {
       ) : (
         <div className="bg-black h-screen">
           <div className="flex flex-col items-center justify-evenly">
-            <p className="mb-2 mt-20">Please connect your wallet</p>
+            <p className="mb-2 mt-20 text-white">Please connect your wallet to view your assets</p>
           </div>
         </div>
       )}

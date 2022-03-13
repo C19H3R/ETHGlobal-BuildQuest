@@ -148,7 +148,7 @@ export default function Mint() {
             <LoadSpinner />
           )
         ) : (
-          <p className="mb-2 mt-20">Please connect your wallet</p>
+          <p className="mb-2 mt-20 text-white">Please connect your wallet to mint</p>
         )}
       </div>
       <div className="flex justify-around">
