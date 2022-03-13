@@ -88,7 +88,7 @@ export default function Mint() {
   return (
     <div className="bg-black">
       <div className="flex flex-col items-center justify-evenly">
-        <div className="flex-col h-screen w-[95%] -mt-10">
+        <div className="flex-col h-screen w-[95%] lg:-mt-10">
           <Canvas
             className="sm:h-20 sm:w-20"
             concurrent
@@ -106,6 +106,8 @@ export default function Mint() {
               <SMG />
             </Suspense>
           </Canvas>
+          <div className="flex justify-center"><p className="text-white text-bold text-lg mt-[-750px]">Mint your NFT Weapon (~2 minutes)</p></div>
+          
         </div>
         <div className="flex flex-row justify-center">
           <div className="flex flex-col">
