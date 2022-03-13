@@ -110,11 +110,11 @@ export default function Mint() {
           
         </div>
         <div className="flex flex-row justify-center">
-          <div className="flex flex-col">
-            <p className="text-white text-bold text-xl -mt-60">
-              3d Model - SuprArms Weapon
+          <div className="flex flex-col items-center">
+            <p className="text-white font-black text-6xl ml-10 lg:ml-0 -mt-60">
+              3D Model - SuprArms Weapon
             </p>
-            <p className="text-white text-bold ml-4 mt-4">
+            <p className="text-white font-bold mr-4 lg:ml-8 mt-4">
               Rendered with threejs + gltfjsx
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function Mint() {
             !opensea ? (
               <button
                 onClick={mint}
-                className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded w-40 mb-20"
+                className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded w-40 mb-20 mt-20 lg:mt-0"
               >
                 Mint NFT
               </button>
@@ -132,7 +132,7 @@ export default function Mint() {
               <>
                 <button
                   onClick={mint}
-                  className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded w-40"
+                  className="bg-gradient-to-r from-teal-400 to-blue-500 hover:from-pink-600 hover:to-orange-600 text-white font-semibold px-4 py-2 rounded w-40 mt-20 lg:mt-0"
                 >
                   Mint NFT
                 </button>

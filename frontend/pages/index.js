@@ -6,7 +6,6 @@ export default function Home() {
       <video
         autoPlay
         loop
-        muted
         className="flex z-10 w-auto"
       >
         <source src="crawl.mp4" type="video/mp4" />
