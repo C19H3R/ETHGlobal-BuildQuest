@@ -106,7 +106,7 @@ export default function Mint() {
               <SMG />
             </Suspense>
           </Canvas>
-          <div className="flex justify-center"><p className="text-white text-bold text-lg mt-[-750px]">Mint your NFT Weapon (~2 minutes)</p></div>
+          <div className="flex justify-center"><img src="/Supr-Arms.gif" className="text-white w-[50%] h-[50%] text-bold text-lg mt-[-800px]"></img></div>
           
         </div>
         <div className="flex flex-row justify-center">
