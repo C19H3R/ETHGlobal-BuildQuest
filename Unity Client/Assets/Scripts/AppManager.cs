@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
-
+using Photon.Pun;
+using Photon.Realtime;
 //Moralis
 using MoralisWeb3ApiSdk;
 using Moralis.Platform.Objects;
@@ -10,22 +12,27 @@ using Moralis.Platform.Objects;
 //WalletConnect
 using WalletConnectSharp.Core.Models;
 using WalletConnectSharp.Unity;
+using Moralis.Web3Api.Models;
 
-public class AppManager : MonoBehaviour
+public class AppManager : MonoBehaviourPunCallbacks
 {
     public MoralisController moralisController;
     public WalletConnect walletConnect;
     public GameObject AuthenticationButton;
     public GameObject qrMenu;
-
     public GameObject connectPanel;
+    public GameObject connectingToPhotonPanel;
     public GameObject HomePagePanel;
     public TextMeshProUGUI walletAddress;
+
+
     // Start is called before the first frame update
     async void Start()
     {
+        // PhotonNetwork.ConnectUsingSettings();
         connectPanel.SetActive(true);
         HomePagePanel.SetActive(false);
+        connectingToPhotonPanel.SetActive(false);
         qrMenu.SetActive(false);
 
 
@@ -69,6 +76,10 @@ public class AppManager : MonoBehaviour
         string appId = MoralisInterface.GetClient().ApplicationId;
         long serverTime = 0;
         walletAddress.text = address;
+        TransferDataToNewScene.instance.walletAddress = address;
+
+        // Debug.Log("nvakajvnvcaqwkj " + address);
+
         // Retrieve server time from Moralis Server for message signature
         Dictionary<string, object> serverTimeResponse = await MoralisInterface.GetClient().Cloud.RunAsync<Dictionary<string, object>>("getServerTime", new Dictionary<string, object>());
 
@@ -96,6 +107,8 @@ public class AppManager : MonoBehaviour
         if (user != null)
         {
             Debug.Log($"User {user.username} logged in successfully. ");
+            PhotonNetwork.NickName = user.username;
+
             //infoText.text = "Logged in successfully!";
         }
         else
@@ -117,7 +130,6 @@ public class AppManager : MonoBehaviour
         // Logout the Moralis User.
         await MoralisInterface.LogOutAsync();
         // Close out the application.
-        Application.Quit();
     }
 
 
@@ -149,12 +161,102 @@ public class AppManager : MonoBehaviour
     private async void UserLoggedInHandler()
     {
         var user = await MoralisInterface.GetUserAsync();
-
         if (user != null)
         {
+
+
+            getNFTTokensForAddress(user.accounts[0]);
+            ConnectToPhotonServer();
             connectPanel.SetActive(false);
-            HomePagePanel.SetActive(true);
+            connectingToPhotonPanel.SetActive(true);
+            HomePagePanel.SetActive(false);
         }
     }
+
+    private async void getNFTTokensForAddress(string currentAddress)
+    {
+        string address = currentAddress;
+        string tokenAddress = "0x78Ae7cFc6B0903F71277cAD2B66528c8044CDaA5";
+        NftOwnerCollection balance = await MoralisInterface.GetClient().Web3Api.Account.GetNFTsForContract(address.ToLower(), tokenAddress.ToLower(), ChainList.mumbai);/*
+        NftOwnerCollection balance = await MoralisInterface.GetClient().Web3Api.Account.GetNFTs(address.ToLower(), ChainList.mumbai);*/
+        List<int> tokensOwnedThis = new List<int>();
+        Debug.Log("ASDF");
+        Debug.Log(balance.Result[0]);
+        foreach (var element in balance.Result)
+        {
+            Debug.Log("result itrated ......................");
+            tokensOwnedThis.Add(int.Parse(element.TokenId));
+            Debug.Log(tokensOwnedThis[0]);
+        }
+        TransferDataToNewScene.instance.tokensOwned = tokensOwnedThis;
+
+    }
+
+    public void enterLobbyScene()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void GoToPlayScene()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+    #region Photon Functions
+    public void ConnectToPhotonServer()
+    {
+        if (!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
+    }
+
+    public void JoinRandomRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+    private void CreateAndJoinRoom()
+    {
+        string randomRoomName = "Room " + Random.Range(0, 100000);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.IsOpen = true;
+        roomOptions.IsVisible = true;
+        roomOptions.MaxPlayers = 20;
+        PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
+
+    }
+    #endregion
+
+
+    #region Callbacks
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log(PhotonNetwork.NickName + " connected to Photon Server");
+        connectPanel.SetActive(false);
+        connectingToPhotonPanel.SetActive(false);
+        HomePagePanel.SetActive(true);
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        base.OnJoinRandomFailed(returnCode, message);
+        Debug.Log(message);
+        CreateAndJoinRoom();
+    }
+
+    public override void OnConnected()
+    {
+        Debug.Log("Connected to Internet");
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log(PhotonNetwork.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        Debug.Log(newPlayer.NickName + " joined the Room");
+    }
+    #endregion
 
 }
