@@ -20,10 +20,15 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="z-50">
       <div>
-        <nav className="flex justify-between items-center flex-wrap p-6 bg-black">
-          <p className="mr-10 text-3xl font-bold text-white">Supr Arms</p>
+        <nav className="flex flex-row justify-between items-center flex-wrap pt-2 pl-6 pr-6 bg-black">
+          <img
+            className="w-20 rounded-full lg:w-24 "
+            src="/images/logo.png"
+          ></img>
+          <p className="mr-10 ml-6 text-3xl font-bold text-white">Supr Arms</p>
+
           <button
             className="inline-flex p-3 rounded lg:hidden text-white ml-auto hover:text-white outline-none"
             onClick={handleClick}
@@ -51,17 +56,17 @@ const Navbar = () => {
             <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
               {navlinks.map((item, index) => {
                 return (
-                    <Link key={index} href={item.path}>
-                      <a
-                        className={`mr-6 mt-2 lg:mt-0 text-xl ${
-                          router.pathname === item.path
-                            ? "text-white"
-                            : "hover:text-white text-gray-400"
-                        }  `}
-                      >
-                        {item.title}
-                      </a>
-                    </Link>
+                  <Link key={index} href={item.path}>
+                    <a
+                      className={`mr-6 mt-2 lg:mt-0 text-xl ${
+                        router.pathname === item.path
+                          ? "text-white"
+                          : "hover:text-white text-gray-400"
+                      }  `}
+                    >
+                      {item.title}
+                    </a>
+                  </Link>
                 );
               })}
               <div className="lg:mt-0 mt-4 z-50 rounded-lg bg-wheat">
