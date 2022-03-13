@@ -106,7 +106,7 @@ export default function Mint() {
               <SMG />
             </Suspense>
           </Canvas>
-          <div className="flex justify-center"><img src="/Supr-Arms.gif" className="text-white w-[50%] h-[50%] lg:w-[20%] lg:h-[20%] text-bold text-lg mt-[-800px] lg:mt-[-880px] md:mt-[-800px] rounded-full"></img></div>
+          <div className="flex justify-center"><img src="/Supr-Arms.gif" className="text-white w-[50%] h-[50%] lg:w-[20%] lg:h-[20%] text-bold text-lg mt-[-750px] lg:mt-[-880px] md:mt-[-800px] rounded-full"></img></div>
           
         </div>
         <div className="flex flex-row justify-center">
